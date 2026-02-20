@@ -1624,12 +1624,14 @@
         }
 
         function loadMore() {
-            var end = Math.min(currentIndex + POSTS_PER_PAGE, totalPosts);
-            for (var i = currentIndex; i < end; i++) {
-                grid.appendChild(createCard(allPosts[i]));
+            if (currentIndex < totalPosts) {
+                var end = Math.min(currentIndex + POSTS_PER_PAGE, totalPosts);
+                for (var i = currentIndex; i < end; i++) {
+                    grid.appendChild(createCard(allPosts[i]));
+                }
+                currentIndex = end;
+                updateUI();
             }
-            currentIndex = end;
-            updateUI();
         }
 
         function updateUI() {
