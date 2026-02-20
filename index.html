@@ -436,6 +436,7 @@
     </footer>
 
     <script>
+    var loadMore; // Declare in global scope so onclick can access it
     (function() {
         var POSTS_PER_PAGE = 20;
         var currentIndex = 0;
@@ -1623,7 +1624,7 @@
             return card;
         }
 
-        function loadMore() {
+        loadMore = function() {
             if (currentIndex < totalPosts) {
                 var end = Math.min(currentIndex + POSTS_PER_PAGE, totalPosts);
                 for (var i = currentIndex; i < end; i++) {
@@ -1632,7 +1633,7 @@
                 currentIndex = end;
                 updateUI();
             }
-        }
+        };
 
         function updateUI() {
             // +1 for the featured post
