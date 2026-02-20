@@ -79,30 +79,22 @@ Hi again<br></br><br></br>Well here you have me at home.  My new job is not that
         </div>
         <script>
 function downloadPDF(){
-    var article=document.querySelector('article.post-article');
     var title=document.querySelector('.post-title').textContent;
+    var date=document.querySelector('.post-date').textContent;
+    var contentHtml=document.querySelector('.post-content').innerHTML;
     
-    // Create a wrapper div with the content we want to capture
-    var wrapper=document.createElement('div');
-    wrapper.style.padding='20px';
-    wrapper.style.fontFamily='Arial, sans-serif';
-    
-    // Copy the post header
-    var header=article.querySelector('.post-header');
-    if(header) wrapper.appendChild(header.cloneNode(true));
-    
-    // Copy the post content
-    var content=article.querySelector('.post-content');
-    if(content) wrapper.appendChild(content.cloneNode(true));
+    var html='<h1 style="font-family: Arial; margin-bottom: 10px;">'+title+'</h1>';
+    html+='<p style="font-family: Arial; color: #666; margin-bottom: 20px;">'+date+'</p>';
+    html+='<div style="font-family: Arial; line-height: 1.6;">'+contentHtml+'</div>';
     
     var opt={
         margin:10,
-        filename:title.substring(0,50)+'.pdf',
+        filename:title.substring(0,40)+'.pdf',
         image:{type:'jpeg',quality:0.98},
         html2canvas:{scale:2,useCORS:true,allowTaint:true,backgroundColor:'#ffffff'},
         jsPDF:{orientation:'portrait',unit:'mm',format:'a4'}
     };
-    html2pdf().set(opt).from(wrapper).save();
+    html2pdf().set(opt).from(html).save();
 }
 function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank')}
 function shareWhatsApp(){window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+window.location.href),'_blank')}
