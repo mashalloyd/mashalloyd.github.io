@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write a New Post | Masha Lloyd's blog</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+    <!-- Quill Editor CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-bg:           #FBF8F4;
+            --color-bg-alt:       #F5F0E8;
+            --color-text:         #4A3F35;
+            --color-text-light:   #8A7E72;
+            --color-text-lighter: #B0A698;
+            --color-heading:      #3D3129;
+            --color-accent:       #C4908A;
+            --color-accent-hover: #A87670;
+            --color-border:       #E5DDD3;
+            --color-white:        #FFFFFF;
+            --font-heading:       'Cormorant Garamond', Georgia, serif;
+            --font-body:          'Source Sans 3', 'Source Sans Pro', sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .editor-header {
+            background: var(--color-white);
+            border-bottom: 1px solid var(--color-border);
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+
+        .editor-header h1 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-heading);
+            margin-bottom: 0.25rem;
+        }
+
+        .editor-header p {
+            font-family: var(--font-heading);
+            font-style: italic;
+            color: var(--color-text-light);
+            font-size: 1.05rem;
+        }
+
+        .editor-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--color-heading);
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            border: 2px solid var(--color-border);
+            border-radius: 6px;
+            background: var(--color-white);
+            color: var(--color-text);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus {
+            border-color: var(--color-accent);
+        }
+
+        input[type="text"]::placeholder {
+            color: var(--color-text-lighter);
+        }
+
+        .tags-help {
+            font-size: 0.82rem;
+            color: var(--color-text-lighter);
+            margin-top: 0.3rem;
+        }
+
+        /* Quill editor styling */
+        #editor-wrapper {
+            background: var(--color-white);
+            border: 2px solid var(--color-border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        #editor-wrapper:focus-within {
+            border-color: var(--color-accent);
+        }
+
+        .ql-toolbar.ql-snow {
+            border: none !important;
+            border-bottom: 1px solid var(--color-border) !important;
+            background: var(--color-bg-alt);
+        }
+
+        .ql-container.ql-snow {
+            border: none !important;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            min-height: 350px;
+        }
+
+        .ql-editor {
+            min-height: 350px;
+            line-height: 1.8;
+            color: var(--color-text);
+        }
+
+        .ql-editor.ql-blank::before {
+            color: var(--color-text-lighter);
+            font-style: italic;
+        }
+
+        /* Buttons */
+        .button-row {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid var(--color-accent);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent-hover);
+            border-color: var(--color-accent-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        /* Status messages */
+        .status-message {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .status-success {
+            background: #E8F5E9;
+            color: #2E7D32;
+            border: 1px solid #A5D6A7;
+            display: block;
+        }
+
+        .status-error {
+            background: #FFEBEE;
+            color: #C62828;
+            border: 1px solid #EF9A9A;
+            display: block;
+        }
+
+        /* Instructions panel */
+        .instructions {
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .instructions h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--color-heading);
+            margin-bottom: 0.75rem;
+        }
+
+        .instructions ol {
+            padding-left: 1.5rem;
+        }
+
+        .instructions li {
+            margin-bottom: 0.5rem;
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+        }
+
+        .instructions code {
+            background: var(--color-bg-alt);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.88rem;
+        }
+
+        /* Preview */
+        .preview-section {
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .preview-section.visible {
+            display: block;
+        }
+
+        .preview-box {
+            background: var(--color-white);
+            border: 2px solid var(--color-border);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 0.75rem;
+        }
+
+        .preview-box h2 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-box .preview-date {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-style: italic;
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .preview-content {
+            line-height: 1.8;
+        }
+
+        .preview-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        @media (max-width: 600px) {
+            .editor-container { padding: 0 1rem; }
+            .editor-header h1 { font-size: 1.5rem; }
+            .button-row { flex-direction: column; }
+            .btn { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="editor-header">
+        <h1>Write a New Post</h1>
+        <p>Compose your blog entry, then download the file to publish it</p>
+    </div>
+
+    <div class="editor-container">
+
+        <!-- Title -->
+        <div class="form-group">
+            <label for="post-title">Post Title</label>
+            <input type="text" id="post-title" placeholder="e.g. A Wonderful Week in the Garden">
+        </div>
+
+        <!-- Date -->
+        <div class="form-group">
+            <label for="post-date">Date</label>
+            <input type="date" id="post-date">
+        </div>
+
+        <!-- Tags -->
+        <div class="form-group">
+            <label for="post-tags">Tags (optional)</label>
+            <input type="text" id="post-tags" placeholder="e.g. family, garden, cooking">
+            <p class="tags-help">Separate tags with commas</p>
+        </div>
+
+        <!-- Editor -->
+        <div class="form-group">
+            <label>Your Post</label>
+            <div id="editor-wrapper">
+                <div id="editor"></div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-row">
+            <button class="btn btn-primary" onclick="downloadPost()">
+                Download Post File
+            </button>
+            <button class="btn btn-secondary" onclick="togglePreview()">
+                Preview
+            </button>
+            <button class="btn btn-secondary" onclick="clearForm()">
+                Clear
+            </button>
+        </div>
+
+        <!-- Status message -->
+        <div id="status-message" class="status-message"></div>
+
+        <!-- Preview section -->
+        <div id="preview-section" class="preview-section">
+            <label>Preview</label>
+            <div class="preview-box">
+                <h2 id="preview-title"></h2>
+                <p class="preview-date" id="preview-date"></p>
+                <div class="preview-content" id="preview-content"></div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <h3>How to Publish Your Post</h3>
+            <ol>
+                <li>Fill in the title, date, and write your post above.</li>
+                <li>You can add images by clicking the image button in the toolbar and pasting an image URL.</li>
+                <li>Click <strong>"Download Post File"</strong> to save the post as a JSON file.</li>
+                <li>Move the downloaded file into the <code>posts</code> folder on your computer.</li>
+                <li>Run the site builder: open a terminal and type <code>python3 build_site.py</code></li>
+                <li>Your new post will appear on the website!</li>
+            </ol>
+        </div>
+
+        <a href="/index.html" class="back-link">&larr; Back to blog</a>
+    </div>
+
+    <!-- Quill Editor JS -->
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        // Initialize Quill editor
+        var quill = new Quill('#editor', {
+            theme: 'snow',
+            placeholder: 'Start writing your post here...',
+            modules: {
+                toolbar: [
+                    [{ 'header': [2, 3, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'color': [] }],
+                    ['blockquote'],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    [{ 'indent': '-1' }, { 'indent': '+1' }],
+                    ['link', 'image'],
+                    [{ 'align': [] }],
+                    ['clean']
+                ]
+            }
+        });
+
+        // Set today's date as default
+        document.getElementById('post-date').valueAsDate = new Date();
+
+        function slugify(text) {
+            return text.toLowerCase().trim()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/[\s_]+/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-+|-+$/g, '');
+        }
+
+        function formatDateText(dateStr) {
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            var months = ['January', 'February', 'March', 'April', 'May', 'June',
+                          'July', 'August', 'September', 'October', 'November', 'December'];
+            var parts = dateStr.split('-');
+            var d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+            return days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+        }
+
+        function showStatus(message, type) {
+            var el = document.getElementById('status-message');
+            el.textContent = message;
+            el.className = 'status-message status-' + type;
+            // Auto-hide after 5 seconds
+            setTimeout(function() {
+                el.className = 'status-message';
+            }, 5000);
+        }
+
+        function downloadPost() {
+            var title = document.getElementById('post-title').value.trim();
+            var date = document.getElementById('post-date').value;
+            var tagsInput = document.getElementById('post-tags').value.trim();
+            var content = quill.root.innerHTML;
+
+            // Validation
+            if (!title) {
+                showStatus('Please enter a post title.', 'error');
+                return;
+            }
+            if (!date) {
+                showStatus('Please select a date.', 'error');
+                return;
+            }
+            if (!quill.getText().trim()) {
+                showStatus('Please write some content for your post.', 'error');
+                return;
+            }
+
+            // Build tags array
+            var tags = [];
+            if (tagsInput) {
+                tags = tagsInput.split(',').map(function(t) { return t.trim(); }).filter(function(t) { return t.length > 0; });
+            }
+
+            // Build the post object
+            var post = {
+                title: title,
+                date: date,
+                date_text: formatDateText(date),
+                content: content,
+                tags: tags,
+                original_url: ''
+            };
+
+            // Create the JSON string
+            var jsonStr = JSON.stringify(post, null, 2);
+
+            // Generate filename
+            var slug = slugify(title);
+            var filename = date + '-' + slug + '.json';
+
+            // Download the file
+            var blob = new Blob([jsonStr], { type: 'application/json' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showStatus('Post file "' + filename + '" downloaded! Place it in the posts folder and run build_site.py.', 'success');
+        }
+
+        function togglePreview() {
+            var section = document.getElementById('preview-section');
+            var isVisible = section.classList.contains('visible');
+
+            if (isVisible) {
+                section.classList.remove('visible');
+                return;
+            }
+
+            var title = document.getElementById('post-title').value.trim() || 'Untitled Post';
+            var date = document.getElementById('post-date').value;
+            var content = quill.root.innerHTML;
+
+            document.getElementById('preview-title').textContent = title;
+            document.getElementById('preview-date').textContent = date ? formatDateText(date) : '';
+            document.getElementById('preview-content').innerHTML = content;
+
+            section.classList.add('visible');
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function clearForm() {
+            if (confirm('Are you sure you want to clear everything?')) {
+                document.getElementById('post-title').value = '';
+                document.getElementById('post-date').valueAsDate = new Date();
+                document.getElementById('post-tags').value = '';
+                quill.setText('');
+                document.getElementById('preview-section').classList.remove('visible');
+                showStatus('Form cleared.', 'success');
+            }
+        }
+    </script>
+
+</body>
+</html>

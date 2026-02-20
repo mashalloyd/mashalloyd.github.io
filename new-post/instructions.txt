@@ -1,0 +1,82 @@
+===============================================================
+  HOW TO ADD A NEW POST TO YOUR BLOG
+  Masha Lloyd's Blog
+===============================================================
+
+There are two ways to add a new post to your blog:
+
+
+METHOD 1: USE THE POST EDITOR (Recommended)
+--------------------------------------------
+
+1. Open the file "add-post.html" in this folder using your
+   web browser (just double-click on it).
+
+2. Fill in:
+   - Title: the title of your post
+   - Date: the date of the post
+   - Tags: optional tags separated by commas (e.g. "family, garden")
+   - Content: write or paste your post using the editor
+
+3. Click "Download Post File" - this saves a .json file to
+   your computer (usually in your Downloads folder).
+
+4. Move that .json file into the "posts" folder:
+      /workspace/posts/
+
+5. Open a terminal and run:
+      python3 /workspace/build_site.py
+
+6. Done! Your new post is now on the website. Open
+   /workspace/site/index.html to see it.
+
+
+METHOD 2: CREATE A JSON FILE MANUALLY
+--------------------------------------
+
+1. Create a new text file in the "posts" folder with a name
+   like: 2025-03-15-my-post-title.json
+
+2. Put this content inside (change the values):
+
+   {
+       "title": "My Post Title",
+       "date": "2025-03-15",
+       "date_text": "Saturday, March 15, 2025",
+       "content": "<p>Write your post here in HTML.</p><p>Each paragraph goes in &lt;p&gt; tags.</p>",
+       "tags": ["family", "garden"],
+       "original_url": ""
+   }
+
+3. Save the file and run:
+      python3 /workspace/build_site.py
+
+
+TIPS
+----
+
+- The date format must be YYYY-MM-DD (e.g. 2025-03-15)
+- Posts are sorted by date, newest first
+- You can use HTML in the content field for formatting:
+    <p>...</p>         for paragraphs
+    <strong>...</strong> for bold text
+    <em>...</em>       for italic text
+    <img src="URL">   for images
+    <a href="URL">    for links
+    <blockquote>      for quotes
+- Tags are optional - leave an empty list [] if you don't want any
+- After adding posts, always run build_site.py to rebuild
+- The built website is in /workspace/site/
+
+
+NEED HELP?
+----------
+
+If something goes wrong, the build script will print error
+messages telling you what the problem is. The most common
+issues are:
+  - Missing "title" or "date" in the JSON file
+  - Invalid JSON format (check for missing commas or quotes)
+  - Wrong date format (must be YYYY-MM-DD)
+
+===============================================================
