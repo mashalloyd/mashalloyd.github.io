@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New post</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Source Sans 3', sans-serif; line-height: 1.6; color: #333; background: #fafafa; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .post-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5em; font-weight: 700; margin-bottom: 10px; color: #1a1a1a; }
+        .post-date { color: #999; font-size: 0.95em; margin-bottom: 30px; }
+        .post-content { font-size: 1.1em; line-height: 1.8; margin-bottom: 30px; }
+        .post-actions { display: flex; gap: 15px; margin: 30px 0; flex-wrap: wrap; }
+        .btn { padding: 10px 20px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 4px; font-size: 0.95em; transition: all 0.3s; }
+        .btn:hover { background: #f5f5f5; }
+        .comments-section { margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-form input, .comment-form textarea { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; }
+        .comment-form textarea { min-height: 80px; resize: vertical; }
+        .comments-list { margin-top: 20px; }
+        .comment { background: #f9f9f9; padding: 15px; margin: 10px 0; border-radius: 4px; border-left: 3px solid #ddd; }
+        .comment-author { font-weight: 600; color: #333; }
+        .comment-date { font-size: 0.85em; color: #999; }
+        .post-navigation { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; text-align: center; }
+        .nav-link { display: inline-block; margin: 0 15px; color: #0066cc; text-decoration: none; }
+        .nav-link:hover { text-decoration: underline; }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .post-title { font-size: 1.8em; }
+            .post-actions { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <article class="post-article">
+            <header class="post-header">
+                <h1 class="post-title">New post</h1>
+                <p class="post-date">2026-02-20</p>
+            </header>
+
+            <div class="post-content">
+                <p>Test</p>
+            </div>
+
+            <div class="post-actions">
+                <button class="btn" onclick="downloadPDF()">📥 Save as PDF</button>
+                <button class="btn" onclick="sharePost()">📤 Share</button>
+                <button class="btn" onclick="emailPost()">✉️ Email</button>
+                <button class="btn" onclick="copyLink()">🔗 Copy Link</button>
+            </div>
+
+            <section class="comments-section">
+                <h2>Comments</h2>
+                <div class="comment-form">
+                    <input type="text" id="commentName" placeholder="Your name" maxlength="100">
+                    <textarea id="commentText" placeholder="Your comment..."></textarea>
+                    <button class="btn" onclick="addComment()">Post Comment</button>
+                </div>
+                <div id="commentsList" class="comments-list"></div>
+            </section>
+
+            <div class="post-navigation">
+                <a href="/" class="nav-link">← Back to Blog</a>
+                <a href="#commentsList" class="nav-link">Comments ↓</a>
+            </div>
+        </article>
+    </div>
+
+    <script>
+        // Load and display comments on page load
+        function loadComments() {
+            var comments = JSON.parse(localStorage.getItem('comments_2026-02-20-new-post.html') || '[]');
+            var list = document.getElementById('commentsList');
+            list.innerHTML = '';
+            if (comments.length === 0) {
+                list.innerHTML = '<p style="color: #999; text-align: center; padding: 20px;">No comments yet. Be the first!</p>';
+            } else {
+                comments.forEach(function(c) {
+                    var div = document.createElement('div');
+                    div.className = 'comment';
+                    div.innerHTML = '<div class="comment-author">' + escapeHtml(c.name) + '</div>' +
+                                    '<div class="comment-date">' + c.date + '</div>' +
+                                    '<p style="margin-top: 10px;">' + escapeHtml(c.text).replace(/\n/g, '<br>') + '</p>';
+                    list.appendChild(div);
+                });
+            }
+        }
+
+        function addComment() {
+            var name = document.getElementById('commentName').value.trim();
+            var text = document.getElementById('commentText').value.trim();
+            if (!name || !text) {
+                alert('Please fill in both fields');
+                return;
+            }
+            var comments = JSON.parse(localStorage.getItem('comments_2026-02-20-new-post.html') || '[]');
+            comments.push({
+                name: name,
+                text: text,
+                date: new Date().toLocaleString()
+            });
+            localStorage.setItem('comments_2026-02-20-new-post.html', JSON.stringify(comments));
+            document.getElementById('commentName').value = '';
+            document.getElementById('commentText').value = '';
+            loadComments();
+        }
+
+        function downloadPDF() {
+            var title = document.querySelector('.post-title').textContent;
+            var date = document.querySelector('.post-date').textContent;
+            var contentHtml = document.querySelector('.post-content').innerHTML;
+            
+            var html = '<h1 style="font-family: Arial; margin-bottom: 10px;">' + title + '</h1>';
+            html += '<p style="font-family: Arial; color: #666; margin-bottom: 20px;">' + date + '</p>';
+            html += '<div style="font-family: Arial; line-height: 1.6;">' + contentHtml + '</div>';
+            
+            var opt = {
+                margin: 10,
+                filename: title.substring(0, 40) + '.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, allowTaint: true, backgroundColor: '#ffffff' },
+                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+            };
+            html2pdf().set(opt).from(html).save();
+        }
+
+        function sharePost() {
+            var title = document.querySelector('.post-title').textContent;
+            var url = window.location.href;
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    url: url
+                });
+            } else {
+                alert('Share this link: ' + url);
+            }
+        }
+
+        function emailPost() {
+            var title = document.querySelector('.post-title').textContent;
+            var url = window.location.href;
+            window.location.href = 'mailto:?subject=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(url);
+        }
+
+        function copyLink() {
+            var url = window.location.href;
+            navigator.clipboard.writeText(url).then(function() {
+                alert('Link copied to clipboard!');
+            });
+        }
+
+        function escapeHtml(text) {
+            var map = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'};
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        // Load comments when page loads
+        loadComments();
+    </script>
+</body>
+</html>
