@@ -122,7 +122,6 @@ google_color_text="333333";
         </div></div>
         </div>
         
-        <nav class="post-navigation"><a href="/posts/2007-11-04-all-saints-bank-holiday.html" class="post-nav-link nav-newer">&larr; All Saint’s Bank Holiday</a><a href="/posts/2007-11-01-the-day-we-went-a-bit-far-with-the-bubble-bath.html" class="post-nav-link nav-older">The day we went a bit far with the bubble bath. &rarr;</a></nav>
 
         <div class="post-actions">
             <button onclick="downloadPDF()" class="action-btn print-btn">Download as PDF</button>
@@ -136,13 +135,14 @@ google_color_text="333333";
             <h3 class="comments-title">Comments</h3>
             <div id="commentsList"></div>
 
-        <nav class="post-navigation"><a href="/posts/2007-11-04-all-saints-bank-holiday.html" class="post-nav-link nav-newer">&larr; All Saint’s Bank Holiday</a><a href="/posts/2007-11-01-the-day-we-went-a-bit-far-with-the-bubble-bath.html" class="post-nav-link nav-older">The day we went a bit far with the bubble bath. &rarr;</a></nav>
             <div class="comment-form">
                 <input type="text" id="commenterName" placeholder="Your name" class="comment-input">
                 <textarea id="commentText" placeholder="Write a comment..." class="comment-textarea"></textarea>
                 <button onclick="addComment()" class="action-btn comment-submit-btn">Post Comment</button>
             </div>
         </div>
+
+        <nav class="post-navigation"><a href="/posts/2007-11-04-all-saints-bank-holiday.html" class="post-nav-link nav-newer">&larr; All Saint’s Bank Holiday</a><a href="/posts/2007-11-01-the-day-we-went-a-bit-far-with-the-bubble-bath.html" class="post-nav-link nav-older">The day we went a bit far with the bubble bath. &rarr;</a></nav>
         <script>
 function downloadPDF(){
     var title=document.querySelector('.post-title').textContent;
