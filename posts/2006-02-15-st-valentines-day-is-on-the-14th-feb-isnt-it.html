@@ -128,7 +128,6 @@ google_color_text="333333";
 </div>
         </div>
         <div class="post-tags"><span class="tag">Eladio</span><span class="tag">St. Valentines</span><span class="tag">Susana</span></div>
-        <nav class="post-navigation"><a href="/posts/2006-02-20-whats-up-this-week.html" class="post-nav-link nav-newer">&larr; What&#x27;s up this week?</a><a href="/posts/2006-02-12-a-family-gathering-and-the-last-of-the-birthday-celebrations.html" class="post-nav-link nav-older">A family gathering and the last of the birthday celebrations &rarr;</a></nav>
 
         <div class="post-actions">
             <button onclick="downloadPDF()" class="action-btn print-btn">Download as PDF</button>
@@ -142,13 +141,14 @@ google_color_text="333333";
             <h3 class="comments-title">Comments</h3>
             <div id="commentsList"></div>
 
-        <nav class="post-navigation"><a href="/posts/2006-02-20-whats-up-this-week.html" class="post-nav-link nav-newer">&larr; What&#x27;s up this week?</a><a href="/posts/2006-02-12-a-family-gathering-and-the-last-of-the-birthday-celebrations.html" class="post-nav-link nav-older">A family gathering and the last of the birthday celebrations &rarr;</a></nav>
             <div class="comment-form">
                 <input type="text" id="commenterName" placeholder="Your name" class="comment-input">
                 <textarea id="commentText" placeholder="Write a comment..." class="comment-textarea"></textarea>
                 <button onclick="addComment()" class="action-btn comment-submit-btn">Post Comment</button>
             </div>
         </div>
+
+        <nav class="post-navigation"><a href="/posts/2006-02-20-whats-up-this-week.html" class="post-nav-link nav-newer">&larr; What&#x27;s up this week?</a><a href="/posts/2006-02-12-a-family-gathering-and-the-last-of-the-birthday-celebrations.html" class="post-nav-link nav-older">A family gathering and the last of the birthday celebrations &rarr;</a></nav>
         <script>
 function downloadPDF(){
     var title=document.querySelector('.post-title').textContent;

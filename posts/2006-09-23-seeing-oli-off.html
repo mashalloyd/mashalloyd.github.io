@@ -170,7 +170,6 @@ Subscribe to:
 </div>
         </div>
         <div class="post-tags"><span class="tag">My family</span><span class="tag">Oli&amp;#39;s Erasmus year</span><span class="tag">Olivia</span></div>
-        <nav class="post-navigation"><a href="/posts/2006-09-23-eladios-birthday-and-the-broken-cake.html" class="post-nav-link nav-newer">&larr; Eladio’s birthday and the broken cake!</a><a href="/posts/2006-09-18-life-is-beautiful-and-i-have-some-news-read-on.html" class="post-nav-link nav-older">Life is beautiful!  And I have some news … Read on. &rarr;</a></nav>
 
         <div class="post-actions">
             <button onclick="downloadPDF()" class="action-btn print-btn">Download as PDF</button>
@@ -184,13 +183,14 @@ Subscribe to:
             <h3 class="comments-title">Comments</h3>
             <div id="commentsList"></div>
 
-        <nav class="post-navigation"><a href="/posts/2006-09-23-eladios-birthday-and-the-broken-cake.html" class="post-nav-link nav-newer">&larr; Eladio’s birthday and the broken cake!</a><a href="/posts/2006-09-18-life-is-beautiful-and-i-have-some-news-read-on.html" class="post-nav-link nav-older">Life is beautiful!  And I have some news … Read on. &rarr;</a></nav>
             <div class="comment-form">
                 <input type="text" id="commenterName" placeholder="Your name" class="comment-input">
                 <textarea id="commentText" placeholder="Write a comment..." class="comment-textarea"></textarea>
                 <button onclick="addComment()" class="action-btn comment-submit-btn">Post Comment</button>
             </div>
         </div>
+
+        <nav class="post-navigation"><a href="/posts/2006-09-23-eladios-birthday-and-the-broken-cake.html" class="post-nav-link nav-newer">&larr; Eladio’s birthday and the broken cake!</a><a href="/posts/2006-09-18-life-is-beautiful-and-i-have-some-news-read-on.html" class="post-nav-link nav-older">Life is beautiful!  And I have some news … Read on. &rarr;</a></nav>
         <script>
 function downloadPDF(){
     var title=document.querySelector('.post-title').textContent;
