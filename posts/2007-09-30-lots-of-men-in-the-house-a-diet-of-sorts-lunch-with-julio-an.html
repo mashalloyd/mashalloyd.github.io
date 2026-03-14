@@ -56,7 +56,6 @@ Hi again<br></br><br></br>As I started to write this post, I thought that not mu
 </div>
         </div>
         
-        <nav class="post-navigation"><a href="/posts/2007-10-04-goodbye-gerardo.html" class="post-nav-link nav-newer">&larr; Goodbye Gerardo!</a><a href="/posts/2007-09-30-olis-make-over-in-mia.html" class="post-nav-link nav-older">Oli&#x27;s make over in Mia &rarr;</a></nav>
 
         <div class="post-actions">
             <button onclick="downloadPDF()" class="action-btn print-btn">Download as PDF</button>
@@ -70,13 +69,14 @@ Hi again<br></br><br></br>As I started to write this post, I thought that not mu
             <h3 class="comments-title">Comments</h3>
             <div id="commentsList"></div>
 
-        <nav class="post-navigation"><a href="/posts/2007-10-04-goodbye-gerardo.html" class="post-nav-link nav-newer">&larr; Goodbye Gerardo!</a><a href="/posts/2007-09-30-olis-make-over-in-mia.html" class="post-nav-link nav-older">Oli&#x27;s make over in Mia &rarr;</a></nav>
             <div class="comment-form">
                 <input type="text" id="commenterName" placeholder="Your name" class="comment-input">
                 <textarea id="commentText" placeholder="Write a comment..." class="comment-textarea"></textarea>
                 <button onclick="addComment()" class="action-btn comment-submit-btn">Post Comment</button>
             </div>
         </div>
+
+        <nav class="post-navigation"><a href="/posts/2007-10-04-goodbye-gerardo.html" class="post-nav-link nav-newer">&larr; Goodbye Gerardo!</a><a href="/posts/2007-09-30-olis-make-over-in-mia.html" class="post-nav-link nav-older">Oli&#x27;s make over in Mia &rarr;</a></nav>
         <script>
 function downloadPDF(){
     var title=document.querySelector('.post-title').textContent;

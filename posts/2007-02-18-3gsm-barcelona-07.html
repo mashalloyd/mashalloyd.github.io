@@ -56,7 +56,6 @@
 </div>
         </div>
         <div class="post-tags"><span class="tag">3GSM Barcelona</span><span class="tag">Barcelona</span></div>
-        <nav class="post-navigation"><a href="/posts/2007-02-25-a-quiet-week-in-february.html" class="post-nav-link nav-newer">&larr; A quiet week in February</a><a href="/posts/2007-02-17-my-50th-birthday-otherwise-known-as-the-indian-wedding.html" class="post-nav-link nav-older">My 50th birthday, otherwise known as the Indian Wedding &rarr;</a></nav>
 
         <div class="post-actions">
             <button onclick="downloadPDF()" class="action-btn print-btn">Download as PDF</button>
@@ -70,13 +69,14 @@
             <h3 class="comments-title">Comments</h3>
             <div id="commentsList"></div>
 
-        <nav class="post-navigation"><a href="/posts/2007-02-25-a-quiet-week-in-february.html" class="post-nav-link nav-newer">&larr; A quiet week in February</a><a href="/posts/2007-02-17-my-50th-birthday-otherwise-known-as-the-indian-wedding.html" class="post-nav-link nav-older">My 50th birthday, otherwise known as the Indian Wedding &rarr;</a></nav>
             <div class="comment-form">
                 <input type="text" id="commenterName" placeholder="Your name" class="comment-input">
                 <textarea id="commentText" placeholder="Write a comment..." class="comment-textarea"></textarea>
                 <button onclick="addComment()" class="action-btn comment-submit-btn">Post Comment</button>
             </div>
         </div>
+
+        <nav class="post-navigation"><a href="/posts/2007-02-25-a-quiet-week-in-february.html" class="post-nav-link nav-newer">&larr; A quiet week in February</a><a href="/posts/2007-02-17-my-50th-birthday-otherwise-known-as-the-indian-wedding.html" class="post-nav-link nav-older">My 50th birthday, otherwise known as the Indian Wedding &rarr;</a></nav>
         <script>
 function downloadPDF(){
     var title=document.querySelector('.post-title').textContent;
