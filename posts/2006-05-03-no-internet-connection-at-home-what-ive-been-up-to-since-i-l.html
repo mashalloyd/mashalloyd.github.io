@@ -198,7 +198,6 @@ Subscribe to:
 </div>
         </div>
         <div class="post-tags"><span class="tag">Family birthdays</span><span class="tag">Mario Vargas Llosa</span><span class="tag">My Father</span></div>
-        <nav class="post-navigation"><a href="/posts/2006-05-14-still-no-internet-moving-house-soon.html" class="post-nav-link nav-newer">&larr; Still no Internet + moving house soon</a><a href="/posts/2006-04-22-so-what-happened-this-week.html" class="post-nav-link nav-older">So what happened this week? &rarr;</a></nav>
 
         <div class="post-actions">
             <button onclick="downloadPDF()" class="action-btn print-btn">Download as PDF</button>
@@ -212,13 +211,14 @@ Subscribe to:
             <h3 class="comments-title">Comments</h3>
             <div id="commentsList"></div>
 
-        <nav class="post-navigation"><a href="/posts/2006-05-14-still-no-internet-moving-house-soon.html" class="post-nav-link nav-newer">&larr; Still no Internet + moving house soon</a><a href="/posts/2006-04-22-so-what-happened-this-week.html" class="post-nav-link nav-older">So what happened this week? &rarr;</a></nav>
             <div class="comment-form">
                 <input type="text" id="commenterName" placeholder="Your name" class="comment-input">
                 <textarea id="commentText" placeholder="Write a comment..." class="comment-textarea"></textarea>
                 <button onclick="addComment()" class="action-btn comment-submit-btn">Post Comment</button>
             </div>
         </div>
+
+        <nav class="post-navigation"><a href="/posts/2006-05-14-still-no-internet-moving-house-soon.html" class="post-nav-link nav-newer">&larr; Still no Internet + moving house soon</a><a href="/posts/2006-04-22-so-what-happened-this-week.html" class="post-nav-link nav-older">So what happened this week? &rarr;</a></nav>
         <script>
 function downloadPDF(){
     var title=document.querySelector('.post-title').textContent;

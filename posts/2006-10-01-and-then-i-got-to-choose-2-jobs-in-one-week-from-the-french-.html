@@ -56,7 +56,6 @@ Hello again,<br></br><br></br>I think most of you know that I have been looking 
 </div>
         </div>
         <div class="post-tags"><span class="tag">New job</span></div>
-        <nav class="post-navigation"><a href="/posts/2006-10-08-my-first-week-just-like-id-never-been-away-plus-pedro-ludy-a.html" class="post-nav-link nav-newer">&larr; My first week – just like I’d never been away.  Plus Pedro, Ludy and Enrique.</a><a href="/posts/2006-10-01-elenas-celebration-50-years-of-religious-life.html" class="post-nav-link nav-older">Elena’s celebration – 50 years of religious life &rarr;</a></nav>
 
         <div class="post-actions">
             <button onclick="downloadPDF()" class="action-btn print-btn">Download as PDF</button>
@@ -70,13 +69,14 @@ Hello again,<br></br><br></br>I think most of you know that I have been looking 
             <h3 class="comments-title">Comments</h3>
             <div id="commentsList"></div>
 
-        <nav class="post-navigation"><a href="/posts/2006-10-08-my-first-week-just-like-id-never-been-away-plus-pedro-ludy-a.html" class="post-nav-link nav-newer">&larr; My first week – just like I’d never been away.  Plus Pedro, Ludy and Enrique.</a><a href="/posts/2006-10-01-elenas-celebration-50-years-of-religious-life.html" class="post-nav-link nav-older">Elena’s celebration – 50 years of religious life &rarr;</a></nav>
             <div class="comment-form">
                 <input type="text" id="commenterName" placeholder="Your name" class="comment-input">
                 <textarea id="commentText" placeholder="Write a comment..." class="comment-textarea"></textarea>
                 <button onclick="addComment()" class="action-btn comment-submit-btn">Post Comment</button>
             </div>
         </div>
+
+        <nav class="post-navigation"><a href="/posts/2006-10-08-my-first-week-just-like-id-never-been-away-plus-pedro-ludy-a.html" class="post-nav-link nav-newer">&larr; My first week – just like I’d never been away.  Plus Pedro, Ludy and Enrique.</a><a href="/posts/2006-10-01-elenas-celebration-50-years-of-religious-life.html" class="post-nav-link nav-older">Elena’s celebration – 50 years of religious life &rarr;</a></nav>
         <script>
 function downloadPDF(){
     var title=document.querySelector('.post-title').textContent;

@@ -56,7 +56,6 @@ Well we chose the pink house but negotiations are proving difficult so it just m
 </div>
         </div>
         <div class="post-tags"><span class="tag">New house</span></div>
-        <nav class="post-navigation"><a href="/posts/2005-10-21-goodbye-6-heaton-grove.html" class="post-nav-link nav-newer">&larr; Goodbye 6 Heaton Grove</a><a href="/posts/2005-09-27-searching-for-a-new-house.html" class="post-nav-link nav-older">Searching for a new house &rarr;</a></nav>
 
         <div class="post-actions">
             <button onclick="downloadPDF()" class="action-btn print-btn">Download as PDF</button>
@@ -70,13 +69,14 @@ Well we chose the pink house but negotiations are proving difficult so it just m
             <h3 class="comments-title">Comments</h3>
             <div id="commentsList"></div>
 
-        <nav class="post-navigation"><a href="/posts/2005-10-21-goodbye-6-heaton-grove.html" class="post-nav-link nav-newer">&larr; Goodbye 6 Heaton Grove</a><a href="/posts/2005-09-27-searching-for-a-new-house.html" class="post-nav-link nav-older">Searching for a new house &rarr;</a></nav>
             <div class="comment-form">
                 <input type="text" id="commenterName" placeholder="Your name" class="comment-input">
                 <textarea id="commentText" placeholder="Write a comment..." class="comment-textarea"></textarea>
                 <button onclick="addComment()" class="action-btn comment-submit-btn">Post Comment</button>
             </div>
         </div>
+
+        <nav class="post-navigation"><a href="/posts/2005-10-21-goodbye-6-heaton-grove.html" class="post-nav-link nav-newer">&larr; Goodbye 6 Heaton Grove</a><a href="/posts/2005-09-27-searching-for-a-new-house.html" class="post-nav-link nav-older">Searching for a new house &rarr;</a></nav>
         <script>
 function downloadPDF(){
     var title=document.querySelector('.post-title').textContent;
