@@ -56,7 +56,6 @@
 </div>
         </div>
         <div class="post-tags"><span class="tag">Indian trip</span></div>
-        <nav class="post-navigation"><a href="/posts/2009-01-07-from-agra-to-varanasi-and-the-ganges-the-holy-city-and-holy-.html" class="post-nav-link nav-newer">&larr; From Agra to Varanasi and the Ganges, the holy city and holy river of India, a humbling experience</a><a href="/posts/2009-01-05-from-udaipur-to-jaipur-the-pink-city-and-a-hotel-fit-for-a-k.html" class="post-nav-link nav-older">From Udaipur to Jaipur, the pink city and a hotel fit for a King, on the road from Jaipur to Agra and the Taj Mahal, the world famous monument of love &rarr;</a></nav>
 
         <div class="post-actions">
             <button onclick="downloadPDF()" class="action-btn print-btn">Download as PDF</button>
@@ -70,13 +69,14 @@
             <h3 class="comments-title">Comments</h3>
             <div id="commentsList"></div>
 
-        <nav class="post-navigation"><a href="/posts/2009-01-07-from-agra-to-varanasi-and-the-ganges-the-holy-city-and-holy-.html" class="post-nav-link nav-newer">&larr; From Agra to Varanasi and the Ganges, the holy city and holy river of India, a humbling experience</a><a href="/posts/2009-01-05-from-udaipur-to-jaipur-the-pink-city-and-a-hotel-fit-for-a-k.html" class="post-nav-link nav-older">From Udaipur to Jaipur, the pink city and a hotel fit for a King, on the road from Jaipur to Agra and the Taj Mahal, the world famous monument of love &rarr;</a></nav>
             <div class="comment-form">
                 <input type="text" id="commenterName" placeholder="Your name" class="comment-input">
                 <textarea id="commentText" placeholder="Write a comment..." class="comment-textarea"></textarea>
                 <button onclick="addComment()" class="action-btn comment-submit-btn">Post Comment</button>
             </div>
         </div>
+
+        <nav class="post-navigation"><a href="/posts/2009-01-07-from-agra-to-varanasi-and-the-ganges-the-holy-city-and-holy-.html" class="post-nav-link nav-newer">&larr; From Agra to Varanasi and the Ganges, the holy city and holy river of India, a humbling experience</a><a href="/posts/2009-01-05-from-udaipur-to-jaipur-the-pink-city-and-a-hotel-fit-for-a-k.html" class="post-nav-link nav-older">From Udaipur to Jaipur, the pink city and a hotel fit for a King, on the road from Jaipur to Agra and the Taj Mahal, the world famous monument of love &rarr;</a></nav>
         <script>
 function downloadPDF(){
     var title=document.querySelector('.post-title').textContent;

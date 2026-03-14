@@ -56,7 +56,6 @@ Hi again<br></br><br></br>Well here I am writing my blog after a week’s absenc
 </div>
         </div>
         
-        <nav class="post-navigation"><a href="/posts/2007-09-24-the-boy-in-the-striped-pyjamas.html" class="post-nav-link nav-newer">&larr; The boy in the striped pyjamas</a><a href="/posts/2007-09-16-spirit-of-the-wild-exhibition-in-stockholm.html" class="post-nav-link nav-older">Spirit of the Wild Exhibition in Stockholm &rarr;</a></nav>
 
         <div class="post-actions">
             <button onclick="downloadPDF()" class="action-btn print-btn">Download as PDF</button>
@@ -70,13 +69,14 @@ Hi again<br></br><br></br>Well here I am writing my blog after a week’s absenc
             <h3 class="comments-title">Comments</h3>
             <div id="commentsList"></div>
 
-        <nav class="post-navigation"><a href="/posts/2007-09-24-the-boy-in-the-striped-pyjamas.html" class="post-nav-link nav-newer">&larr; The boy in the striped pyjamas</a><a href="/posts/2007-09-16-spirit-of-the-wild-exhibition-in-stockholm.html" class="post-nav-link nav-older">Spirit of the Wild Exhibition in Stockholm &rarr;</a></nav>
             <div class="comment-form">
                 <input type="text" id="commenterName" placeholder="Your name" class="comment-input">
                 <textarea id="commentText" placeholder="Write a comment..." class="comment-textarea"></textarea>
                 <button onclick="addComment()" class="action-btn comment-submit-btn">Post Comment</button>
             </div>
         </div>
+
+        <nav class="post-navigation"><a href="/posts/2007-09-24-the-boy-in-the-striped-pyjamas.html" class="post-nav-link nav-newer">&larr; The boy in the striped pyjamas</a><a href="/posts/2007-09-16-spirit-of-the-wild-exhibition-in-stockholm.html" class="post-nav-link nav-older">Spirit of the Wild Exhibition in Stockholm &rarr;</a></nav>
         <script>
 function downloadPDF(){
     var title=document.querySelector('.post-title').textContent;
