@@ -158,6 +158,11 @@ blockquote {
     opacity: 0.85;
 }
 
+/* Hide header photo on post pages (let feature photo be first) */
+.page-post .header-photo {
+    display: none;
+}
+
 .site-title {
     font-family: var(--font-heading);
     font-size: 3.2rem;
